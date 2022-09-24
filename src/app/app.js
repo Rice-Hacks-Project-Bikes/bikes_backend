@@ -4,8 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// connect to db
+var db = require('./db/db')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var addBikeRouter = require('./routes/addBike');
 var getBikesRouter = require('./routes/getBikes');
 
 var app = express();
@@ -21,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/addBike', addBikeRouter);
 app.use('/users', usersRouter);
 app.use('/getBikes', getBikesRouter);
 
