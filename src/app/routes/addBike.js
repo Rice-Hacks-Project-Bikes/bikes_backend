@@ -1,24 +1,43 @@
 var express = require('express');
 var router = express.Router();
+let BikeModel = require('../db/models/bikeModel')
 
-/* send bike. */
-router.get('/', function(req, res, next) {
-	// TODO remove
-	res.render('index', { title: 'BIKE Send' });
+/* add bike to bikes database */
+router.get('/', async (req, res) => {
+	try {
 
-	msg.save()
-	.then(doc => {
-	  console.log(doc)
-	})
-	.catch(err => {
-	  console.error(err)
-	})
+		var bike = new BikeModel({
+			title: req.query.title,
+			brand: req.query.brand,
+			Model: req.query.Model,
+			Year: req.query.Year,
+			style: req.query.style,
+			frameSize: req.query.frameSize, 
+			storage: req.query.photos,
+			photos: req.query.photos
+		})
+
+		await bike.save()
+		.then(doc => {
+			console.log(doc);
+			return res.sendStatus(200);
+		})
+
+	} catch (error) {
+
+		if (error.name === "ValidationError") {
+			let errors = {};
+	
+			Object.keys(error.errors).forEach((key) => {
+				errors[key] = error.errors[key].message;
+			});
+
+			console.error(errors);
+			return res.status(400).send(errors);
+		}
+		console.error(error);
+		res.status(500).send("Something went wrong");
+	}
 });
 
 module.exports = router;
-
-let BikeModel = require('../db/models/bikeModel.js')
-
-let msg = new BikeModel({
-  name: 'Trek Bike Test'
-})
