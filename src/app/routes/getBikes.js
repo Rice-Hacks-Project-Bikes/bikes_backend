@@ -5,6 +5,7 @@ let BikeModel = require('../db/models/bikeModel');
 /* GET bikes. */
 router.get('/', async (req, res) => {
 	// TODO we should be having a dynamic search for titles but static for all other attribs
+	// Need to search within a location range
 	const results = await BikeModel.find(req.query).exec();
 
 	console.log(`getBikes request ${JSON.stringify(req.query)} => ${JSON.stringify(results) === '[]' ? 'None' : results}`) 
