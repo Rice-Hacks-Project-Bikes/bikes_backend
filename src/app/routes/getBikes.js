@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-let openBikesDB = require('../db/openBikesDB');
-let BikeModel = openBikesDB.model('openBike');
+let bikesDB = require('../db/bikesDB');
+let BikeModel = bikesDB.model('openBike');
 
-/* GET bikes. */
+/* GET bikes. Only gets bikes that aren't currently rented */
 router.get('/', async (req, res) => {
 	// TODO we should be having a dynamic search for titles but static for all other attribs
 
@@ -37,6 +37,7 @@ router.get('/', async (req, res) => {
 	if (search.hasOwnProperty('radius')) {
 		delete search['radius'];
 	}
+	search['rented'] = false;
 
 	const results = await BikeModel.find(search).exec();
 

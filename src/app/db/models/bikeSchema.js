@@ -24,6 +24,16 @@ let openBikeSchema = new mongoose.Schema({
 	location: {
 		type: pointSchema,
 		required: [true, 'Bike must have a current location'],
+		index: true,
+		
+	},
+	rented: {
+		type: Boolean,
+		required: true
+	},
+	rentedBy: {
+		type: mongoose.ObjectId,
+		required: false
 	},
 	brand: {
 		type: String,

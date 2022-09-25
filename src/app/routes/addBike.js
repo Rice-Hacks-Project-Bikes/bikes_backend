@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-let openBikesDB = require('../db/openBikesDB');
-let BikeModel = openBikesDB.model('openBike');
+let bikesDB = require('../db/bikesDB');
+let BikeModel = bikesDB.model('openBike');
 
 /* add bike to bikes database */
 router.get('/', async (req, res) => {
@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
 
 		var bike = new BikeModel({
 			title: req.query.title,
+			rented: false,
 			location: {
 				"type" : "Point",
 				"coordinates" : [
