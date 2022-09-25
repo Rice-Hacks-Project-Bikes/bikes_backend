@@ -8,7 +8,7 @@ try {
 	return;
 }	
 
-usersDB.model('Users', require('./models/userSchema'));
+usersDB.model('User', require('./models/userSchema'));
 
 console.log('Successfully connected to Users DB!')
 

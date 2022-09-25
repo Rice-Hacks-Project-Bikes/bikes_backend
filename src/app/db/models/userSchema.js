@@ -5,10 +5,15 @@ let userSchema = new mongoose.Schema({
 		type: String,
 		lowercase: true,
 		trim: true,
-		match: '\S*',
+		match: new RegExp('^\\S*$'),
 		maxLength: 12,
 		index: true,
-    	unique: true
+    	unique: true,
+		required: true
+	},
+	rentedBikes: {
+		type: [mongoose.ObjectId],
+		required: true
 	}
 })
 

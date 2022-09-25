@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
 			return res.status(400).send(errors);
 		}
 		console.error(error);
-		res.status(500).send("Something went wrong");
+		res.status(500).send(`Something went wrong => ${error}`);
 	}
 });
 

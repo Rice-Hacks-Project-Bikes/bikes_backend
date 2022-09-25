@@ -9,8 +9,8 @@ var openBikesDB = require('./db/openBikesDB');
 var usersDB = require('./db/usersDB');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var addBikeRouter = require('./routes/addBike');
+var addUserRouter = require('./routes/addUser');
 var getBikesRouter = require('./routes/getBikes');
 
 var app = express();
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/addBike', addBikeRouter);
-app.use('/users', usersRouter);
+app.use('/addUser', addUserRouter);
 app.use('/getBikes', getBikesRouter);
 
 // catch 404 and forward to error handler
