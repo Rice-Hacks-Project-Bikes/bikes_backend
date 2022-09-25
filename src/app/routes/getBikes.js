@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
+let BikeModel = require('../db/models/bikeModel');
 
 /* GET bikes. */
-router.get('/', function(req, res, next) {
-	// TODO remove
-	res.render('index', { title: 'BIKE' });
+router.get('/', async (req, res) => {
+	// TODO we should be having a dynamic search for titles but static for all other attribs
+	const results = await BikeModel.find(req.query).exec();
 
-	var mongo = require('../db/db.js');
-	mongo.testMongo().catch(console.error);
+	console.log(`getBikes request ${JSON.stringify(req.query)} => ${JSON.stringify(results) === '[]' ? 'None' : results}`) 
+	return res.status(200).send(results);
 });
 
 module.exports = router;

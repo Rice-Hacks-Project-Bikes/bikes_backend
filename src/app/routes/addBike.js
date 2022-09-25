@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let BikeModel = require('../db/models/bikeModel')
+let BikeModel = require('../db/models/bikeModel');
 
 /* add bike to bikes database */
 router.get('/', async (req, res) => {
@@ -9,11 +9,11 @@ router.get('/', async (req, res) => {
 		var bike = new BikeModel({
 			title: req.query.title,
 			brand: req.query.brand,
-			Model: req.query.Model,
-			Year: req.query.Year,
+			model: req.query.Model,
+			year: req.query.Year,
 			style: req.query.style,
 			frameSize: req.query.frameSize, 
-			storage: req.query.photos,
+			storage: req.query.storage,
 			photos: req.query.photos
 		})
 

@@ -9,11 +9,11 @@ let bikeSchema = new mongoose.Schema({
 		type: String,
 		required: false
 	},
-	Model: {
+	model: {
 		type: String,
 		required: false
 	},
-	Year: {
+	year: {
 		type: Number,
 		min: [1950, 'Bike is too old'],
 		max: [new Date().getFullYear(), "The year {VALUE} hasn't happened yet"],
@@ -40,7 +40,8 @@ let bikeSchema = new mongoose.Schema({
 	photos: {
 		// list of photo ids for this listing
 		type: [Number], 
-		required: true
+		// TODO setting to false for now until we can get these working
+		required: false
 		// TODO add validation to make sure there are at least X pics for bike
 	}
 })
