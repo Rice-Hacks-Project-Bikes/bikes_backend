@@ -8,8 +8,8 @@ try {
 	return;
 }	
 
-bikesDB.model('Bike', require('./models/bikeSchema'));
+bikesDB.model('openBike', require('./models/openBikeSchema'));
  
-console.log('Successfully connected to Bikes DB!')
+console.log('Successfully connected to Open Bikes DB!')
 
 module.exports = bikesDB;
