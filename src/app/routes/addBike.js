@@ -8,10 +8,16 @@ router.get('/', async (req, res) => {
 
 		var bike = new BikeModel({
 			title: req.query.title,
-			location: [req.query.coord1, req.query.coord2],
+			location: {
+				"type" : "Point",
+				"coordinates" : [
+					req.query.long,
+					req.query.lat
+				]
+			}, 
 			brand: req.query.brand,
-			model: req.query.Model,
-			year: req.query.Year,
+			model: req.query.model,
+			year: req.query.year,
 			style: req.query.style,
 			frameSize: req.query.frameSize, 
 			storage: req.query.storage,

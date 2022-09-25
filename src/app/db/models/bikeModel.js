@@ -1,17 +1,29 @@
 let mongoose = require('mongoose')
 
+const pointSchema = new mongoose.Schema({
+	type: {
+	  type: String,
+	  enum: ['Point'],
+	  required: true
+	},
+	coordinates: {
+	  type: [Number],
+	  required: true,
+	  validate: {
+		validator: validateLoc,
+		message: 'Coordinates must be formated as an array of exactly 2 decimal numbers with precision 5 or greater and must be valid coordinates in the DD system.'
+	  }
+	}
+});
+
 let bikeSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: [true, 'Bike must have a title'] 
 	},
 	location: {
-		type: [Number],
+		type: pointSchema,
 		required: [true, 'Bike must have a current location'],
-		validate: {
-			validator: validateLoc,
-			message: 'Coordinates must be formated as an array of exactly 2 decimal numbers with precision 5 or greater and must be valid coordinates in the DD system.'
-		}
 	},
 	brand: {
 		type: String,
@@ -64,10 +76,12 @@ function validateLoc(loc) {
 		if (!(loc[i] % 1 != 0 && loc[i].toString().split(".")[1].length >= 5)) {
 			return false;
 		}
-		if (i == 0 && (loc[i] < -90 || loc[i] > 90)) {
+		// long
+		if (i == 1 && (loc[i] < -90 || loc[i] > 90)) {
 			return false;
 		}
-		if (i == 1 && (loc[i] < -180 || loc[i] > 180)) {
+		// lat
+		if (i == 0 && (loc[i] < -180 || loc[i] > 180)) {
 			return false;
 		}
 	}
