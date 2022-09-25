@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// connect to db
-var db = require('./db/db')
+// connect to dbs
+var openBikesDB = require('./db/openBikesDB');
+var usersDB = require('./db/usersDB');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

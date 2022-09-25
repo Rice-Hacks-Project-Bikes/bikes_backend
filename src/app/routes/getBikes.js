@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-let BikeModel = require('../db/models/bikeModel');
+let openBikesDB = require('../db/openBikesDB');
+let BikeModel = openBikesDB.model('openBike');
 
 /* GET bikes. */
 router.get('/', async (req, res) => {

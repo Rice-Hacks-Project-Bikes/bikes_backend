@@ -16,7 +16,7 @@ const pointSchema = new mongoose.Schema({
 	}
 });
 
-let bikeSchema = new mongoose.Schema({
+let openBikeSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: [true, 'Bike must have a title'] 
@@ -88,4 +88,4 @@ function validateLoc(loc) {
 	return true;
 }
 
-module.exports = mongoose.model('Bike', bikeSchema)
+module.exports = openBikeSchema
